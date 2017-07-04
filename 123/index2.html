@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Proyectop</title>
+				<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.1.0/leaflet.css" />
+				<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.1.0/leaflet.js"></script>
+
+        <meta name="description" content="Examples for creative website header animations using Canvas and JavaScript" />
+        <meta name="keywords" content="header, canvas, animated, creative, inspiration, javascript" />
+        <meta name="author" content="Codrops" />
+        <link rel="shortcut icon" href="../favicon.ico">
+        <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+        <link rel="stylesheet" type="text/css" href="css/demo.css" />
+        <link rel="stylesheet" type="text/css" href="css/component.css" />
+        <link href='http://fonts.googleapis.com/css?family=Raleway:200,400,800|Clicker+Script' rel='stylesheet' type='text/css'>
+
+				<style type="text/css">
+					html, body {
+						height: 100%;
+						width: 100%;
+						margin: 0;
+					}
+					.cabecera{
+						height: 50px;
+						background-color: #383a3c;
+					}
+					.cabecera h2{
+						color: #fff;
+						margin-top: 0;
+					}
+					#mapa{
+						height: 500px;
+						width: 80%;
+						margin-left:100px;
+						border: solid 3px #383a3c;
+					}
+
+				</style>
+				<script type="text/javascript">
+				 var init = function(){
+				 	var map = new L.Map('mapa', {
+						//prado -16.501491, -68.132600
+						//Bolivia -17.379999,-64.819336
+						// san pedro -16.502393, -68.135297
+				 		center: new L.LatLng(-16.502393, -68.135297),
+				 		zoom: 15,
+				 		attributionControl:true,
+				 		zoomControl:true,
+				 		minZoom:1
+				 	});
+
+				    var osmUrl='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+				  	var osmAttrib='Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
+				  	var osm = new L.TileLayer(osmUrl, {
+				  		minZoom: 1,
+				  		maxZoom: 19,
+				  		attribution: osmAttrib
+				  	});
+				    map.addLayer(osm);
+
+				    var wmsLayer1= L.tileLayer.wms("http://geo.gob.bo/geoserver/wms", {
+				        layers: 'cite:Linea-27',
+				        format: 'image/png',
+				        transparent: true
+				    });
+				    var wmsLayer2= L.tileLayer.wms("http://geo.gob.bo/geoserver/wms", {
+				        layers: 'mde:EstabEducativos-cluster',
+				        format: 'image/png',
+				        transparent: true
+				    });
+				    var wmsLayer3= L.tileLayer.wms("http://geo.gob.bo/geoserver/wms", {
+				        layers: 'fondos:comunidades_2012',
+				        format: 'image/png',
+				        transparent: true
+				    });
+
+
+				    map.addLayer(wmsLayer1);
+				    map.addLayer(wmsLayer2);
+				    map.addLayer(wmsLayer3);
+
+				    var base = {
+				    	"OSM": osm
+				    };
+				    superpuestas = {
+				    	"Linea 27":wmsLayer1,
+				    	"Linea 29":wmsLayer2,
+				    	"Linea-J":wmsLayer3
+				    };
+				    L.control.layers(base, superpuestas).addTo(map);
+				 }
+				 window.onload = init;
+				</script>
+        <!--[if IE]>
+        	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+	</head>
+	<body>
+		<div class="container demo-2">
+			<div class="content">
+                <div id="large-header" class="large-header">
+                    <canvas id="demo-canvas"></canvas>
+                    <h1 class="main-title">Curso GIS</span></h1>
+                </div>
+                <div class="codrops-top clearfix">
+                    <a class="codrops-icon codrops-icon-drop" href=""><span>Desarrollo SIG</span></a>
+                    <a class="codrops-icon codrops-icon-drop" href=""><span>Postgrado en Informatica</span></a>
+                </div>
+						    <div class="codrops-header">
+                    <h1>Rutas de Transporte Publico <span>La Paz</span></h1>
+										<div id="mapa"></div>
+
+                    <nav class="codrops-demos">
+                        <a href="">Minibuses</a>
+                        <a class="current-demo" href="index2.html">Micros</a>
+                        <a href="">Carries</a>
+                        <a href="">Buses</a>
+                    </nav>
+                </div>
+            </div>
+
+            <!--p class="ref"> <a href="http://unsplash.com/">Unsplash</a>. Ornament made with the <a href="http://pixelbuddha.net/freebie/sable-kit-free">Free Sable Kit</a> from Pixel Buddha.</p-->
+		</div><!-- /container -->
+        <script src="js/rAF.js"></script>
+        <script src="js/demo-2.js"></script>
+	</body>
+</html>
