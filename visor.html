@@ -30,14 +30,12 @@
 	</style>
 	<script type="text/javascript">
 		var init = function(){
-
 			var proyeccion = new OpenLayers.Projection("EPSG:900913"); //EPSG:900913
 			var proyeccion2 = new OpenLayers.Projection("EPSG:4326");
 			var controlNavegacion = new OpenLayers.Control.Navigation();
 			var controlZoom = new OpenLayers.Control.PanZoomBar(); // Zoom
 			var host = "http://192.168.43.69";
 			OpenLayers.ProxyHost = "/cgi-bin/proxy.cgi?url=";
-
 			// Propiedades del objeto Map
 			var propiedades = {
 				projection: proyeccion,
@@ -46,30 +44,23 @@
 				controls: [controlNavegacion, controlZoom],
 				numZoomLevels: 21
 			};
-
 			//Creación de una instancia de la clase Map
 			var map = new OpenLayers.Map("mapa", propiedades);
-
 			// Capa OSM
 			var layerOSM = new OpenLayers.Layer.OSM();
 			map.addLayer(layerOSM);
-
 			// Capa Google
 			var layerGoogleSatelital = new OpenLayers.Layer.Google("Google Satelital",{type:google.maps.MapTypeId.SATELLITE});
 			var layerGoogleHibrido = new OpenLayers.Layer.Google("Google Hidrido",{type:google.maps.MapTypeId.HYBRID});
 			var layerGoogleTerrain = new OpenLayers.Layer.Google("Google Terrain",{type:google.maps.MapTypeId.TERRAIN});
-
 			map.addLayers([layerGoogleHibrido, layerGoogleSatelital, layerGoogleTerrain]);
-
 
 			// Control de cambio de Capas
 			var controlCapas = new OpenLayers.Control.LayerSwitcher();
 			map.addControl(controlCapas);
-
 			// Control de cursor
 			var controlCursor = new OpenLayers.Control.MousePosition();
 			map.addControl(controlCursor);
-
 			/// Capa consumiendo servicio WMS
 			var nombreWMS = "Límites departamentales";
 			var urlWMS = "http://geo.gob.bo/geoserver/wms";
@@ -77,11 +68,9 @@
 				layers: 'fondos:departamento1',
 				transparent: true
 			};
-
 			var layerDepartamentosWMS = new OpenLayers.Layer.WMS(nombreWMS, urlWMS, propiedadesWMS);
 			layerDepartamentosWMS.setVisibility(false);
 			map.addLayer(layerDepartamentosWMS);
-
 			// Layer WMS desde geoserver Local
 			var layerEolico = new OpenLayers.Layer.WMS(
 				"Mapa Eólico",
@@ -93,7 +82,6 @@
 			);
 			map.addLayer(layerEolico);
 			layerEolico.setVisibility(false);
-
 			// Layer WMS mapa Eolico desde PostGIS
 			var layerEolicoPG = new OpenLayers.Layer.WMS(
 				"Mapa Eólico PostGIS",
@@ -105,7 +93,6 @@
 			);
 			map.addLayer(layerEolicoPG);
 			layerEolicoPG.setVisibility(false);
-
 			// Capa Presas 2010
 			var layerPresas = new OpenLayers.Layer.WMS(
 				"Mapa de Represas",
@@ -117,13 +104,11 @@
 			);
 			map.addLayer(layerPresas);
 			layerPresas.setVisibility(false);
-
 			var layerJson = new OpenLayers.Layer.Vector(
 				"Capa Uyuni-json",
 				{
 					projection: new OpenLayers.Projection("EPSG:4326"),
 					strategies: [new OpenLayers.Strategy.Fixed()],
-
 					protocol: new OpenLayers.Protocol.HTTP({
 						url: './salar_uyuni.json',
 						format: new OpenLayers.Format.GeoJSON()
@@ -132,7 +117,6 @@
 			);
 			map.addLayer(layerJson);
 			layerJson.setVisibility(false);
-
 			var	controlInfo = new OpenLayers.Control.WMSGetFeatureInfo({
 				queryVisible: true,
 				eventListeners: {
@@ -146,7 +130,6 @@
 							true
 						);
 						map.addPopup(popup);
-
 						var info = document.getElementById("informacion");
 						var posicion = map.getLonLatFromPixel(event.xy);
 						info.innerHTML = posicion.lon +" | "+ posicion.lat;
@@ -155,8 +138,6 @@
 			});
 			map.addControl(controlInfo);
 			controlInfo.activate();
-
-
 			// Configuración para mostrar la región de Bolivia
 			// Lon: -64.819336, Lat: -17.379999
 			var LonLat = new OpenLayers.LonLat(-64.819336, -17.379999);
@@ -166,7 +147,6 @@
 				map.getProjection() // new OpenLayers.Projection("EPSG:900913")
 			);
 			map.setCenter(LonLatTransformado, zoom);
-
 		}
 		// Cargamos la función init, para desplegar el mapa
 		window.onload = init;
@@ -178,7 +158,8 @@
 	</div>
 	<div id="mapa"></div>
 
-	<div id="informacion"></div>
+<div id="informacion"></di
+v>
 
 
 	<hr>
