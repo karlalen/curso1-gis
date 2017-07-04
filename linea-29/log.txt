@@ -1,0 +1,13 @@
+Warning 6: Normalized/laundered field name: 'description' to 'descriptio'
+Warning 6: Field timestamp create as date field, though DateTime requested.
+Warning 6: Field begin create as date field, though DateTime requested.
+Warning 6: Field end create as date field, though DateTime requested.
+Warning 6: Normalized/laundered field name: 'altitudeMode' to 'altitudeMo'
+ERROR 1: Attempt to write non-linestring (POINT) geometry to ARC type shapefile.
+Warning 6: Normalized/laundered field name: 'description' to 'descriptio'
+Warning 6: Field timestamp create as date field, though DateTime requested.
+Warning 6: Field begin create as date field, though DateTime requested.
+Warning 6: Field end create as date field, though DateTime requested.
+Warning 6: Normalized/laundered field name: 'altitudeMode' to 'altitudeMo'
+Warning 6: Normalized/laundered field name: 'gx_media_links' to 'gx_media_l'
+ERROR 1: Attempt to write non-point (LINESTRING) geometry to point shapefile.
