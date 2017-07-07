@@ -133,6 +133,18 @@
 				map.addLayer(lago);
 				lago.setVisibility(false);
 
+				// Capa linea at
+				var red = new OpenLayers.Layer.WMS(
+					"Red Electrica",
+					host + ":8080/geoserver/wms",
+					{
+						layers: 'karla:LINEA_AT',
+						transparent: true
+					}
+				);
+				map.addLayer(red);
+				red.setVisibility(false);
+
 				/*var	controlInfo = new OpenLayers.Control.WMSGetFeatureInfo({
 					queryVisible: true,
 					eventListeners: {
