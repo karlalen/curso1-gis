@@ -110,16 +110,16 @@
 				map.addLayer(ruta1);
 				ruta1.setVisibility(false);
 				// Capa Presas 2010
-				var layerruta = new OpenLayers.Layer.WMS(
-					"Linea-27",
+				var presas = new OpenLayers.Layer.WMS(
+					"Presas",
 					host + ":8080/geoserver/wms",
 					{
-						layers: 'cite:Linea-27',
+						layers: 'karla:Presas2010',
 						transparent: true
 					}
 				);
-				map.addLayer(layerruta);
-				layerruta.setVisibility(false);
+				map.addLayer(presas);
+				presas.setVisibility(false);
 				var layerJson = new OpenLayers.Layer.Vector(
 					"Capa Uyuni-json",
 					{
@@ -133,7 +133,7 @@
 				);
 				map.addLayer(layerJson);
 				layerJson.setVisibility(false);
-				var	controlInfo = new OpenLayers.Control.WMSGetFeatureInfo({
+				/*var	controlInfo = new OpenLayers.Control.WMSGetFeatureInfo({
 					queryVisible: true,
 					eventListeners: {
 						getfeatureinfo: function (event){
@@ -149,7 +149,7 @@
 							var info = document.getElementById("informacion");
 							var posicion = map.getLonLatFromPixel(event.xy);
 							info.innerHTML = posicion.lon +" | "+ posicion.lat;
-						}
+						}*/
 					}
 				});
 				map.addControl(controlInfo);
