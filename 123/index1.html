@@ -98,7 +98,7 @@
 				);
 				map.addLayer(layerEolico);
 				layerEolico.setVisibility(false);
-				// Layer WMS mapa Eolico desde PostGIS
+				// Layer WMS mapa Linea-27 desde PostGIS
 				var ruta1 = new OpenLayers.Layer.WMS(
 					"Linea-27",
 					host + ":8080/geoserver/wms",
@@ -120,19 +120,19 @@
 				);
 				map.addLayer(presas);
 				presas.setVisibility(false);
-				var layerJson = new OpenLayers.Layer.Vector(
-					"Capa Uyuni-json",
+
+				// Capa Presas 2010
+				var lago = new OpenLayers.Layer.WMS(
+					"Lago Poopo",
+					host + ":8080/geoserver/wms",
 					{
-						projection: new OpenLayers.Projection("EPSG:4326"),
-						strategies: [new OpenLayers.Strategy.Fixed()],
-						protocol: new OpenLayers.Protocol.HTTP({
-							url: './salar_uyuni.json',
-							format: new OpenLayers.Format.GeoJSON()
-						})
+						layers: 'karla:LAGO_POOPO_2016_IGM',
+						transparent: true
 					}
 				);
-				map.addLayer(layerJson);
-				layerJson.setVisibility(false);
+				map.addLayer(Lago);
+				Lago.setVisibility(false);
+
 				/*var	controlInfo = new OpenLayers.Control.WMSGetFeatureInfo({
 					queryVisible: true,
 					eventListeners: {
